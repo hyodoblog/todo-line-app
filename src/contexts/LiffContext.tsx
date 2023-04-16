@@ -1,5 +1,6 @@
 'use client'
 
+import { Profile } from '@liff/get-profile'
 import { liff } from '@line/liff'
 import { LiffMockPlugin } from '@line/liff-mock'
 import Script from 'next/script'
@@ -10,6 +11,7 @@ const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID!
 class LiffContextProps {
   isLogIn = false
   isError = false
+  profile: Profile | null = null
   refetch: () => Promise<void> = async () => {
     //
   }
@@ -24,10 +26,11 @@ type Props = {
 }
 
 export const LiffProvider = ({ children }: Props) => {
+  const [profile, setProfile] = useState<Profile | null>(null)
   const [error, setError] = useState<Error | null>(null)
 
-  const isLogIn = false
-  const isError = false
+  const isLogIn = !!profile
+  const isError = !!error
 
   const refetch = async () => {
     //
@@ -35,6 +38,8 @@ export const LiffProvider = ({ children }: Props) => {
 
   const lineLogin = async (): Promise<void> => {
     const accessToken = liff.getAccessToken()!
+
+    setProfile(await liff.getProfile())
   }
 
   const liffInit = async () => {
@@ -70,6 +75,7 @@ export const LiffProvider = ({ children }: Props) => {
         isLogIn,
         isError,
         refetch,
+        profile,
         setError,
         error
       }}
