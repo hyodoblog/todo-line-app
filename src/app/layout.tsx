@@ -1,4 +1,4 @@
-import SessionProvider from '~/provider/SessionProvider'
+import { LiffProvider } from '~/contexts/LiffContext'
 import './globals.css'
 
 export const metadata = {
@@ -8,10 +8,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
+    <LiffProvider>
       <html lang="ja">
         <body>{children}</body>
       </html>
-    </SessionProvider>
+    </LiffProvider>
   )
 }
