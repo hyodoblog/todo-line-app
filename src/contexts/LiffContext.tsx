@@ -1,3 +1,5 @@
+'use client'
+
 import { liff } from '@line/liff'
 import { LiffMockPlugin } from '@line/liff-mock'
 import Script from 'next/script'

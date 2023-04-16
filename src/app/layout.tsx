@@ -1,17 +1,23 @@
-import { LiffProvider } from '~/contexts/LiffContext'
-import './globals.css'
+'use client'
 
-export const metadata = {
-  title: 'AIタスク',
-  description: 'AIでタスク管理を効率化しましょう'
-}
+import { LiffContext, LiffProvider } from '~/contexts/LiffContext'
+import './globals.css'
+import Head from 'next/head'
+import { useContext } from 'react'
+import { Loader } from '~/components/Loader'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { isLogIn } = useContext(LiffContext)
+
   return (
-    <LiffProvider>
-      <html lang="ja">
-        <body>{children}</body>
-      </html>
-    </LiffProvider>
+    <html lang="ja">
+      <Head>
+        <title></title>
+      </Head>
+
+      <LiffProvider>
+        <body>{isLogIn ? children : <Loader />}</body>
+      </LiffProvider>
+    </html>
   )
 }
