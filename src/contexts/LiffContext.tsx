@@ -1,10 +1,13 @@
 'use client'
 
 import { Profile } from '@liff/get-profile'
+import { Config as LiffConfig } from '@liff/types'
 import { liff } from '@line/liff'
-import { LiffMockPlugin } from '@line/liff-mock'
+import { LiffMockPlugin, LiffMockConfig } from '@line/liff-mock'
 import Script from 'next/script'
 import { createContext, useState } from 'react'
+
+type LiffInitConfig = LiffConfig & LiffMockConfig
 
 const liffId = process.env.NEXT_PUBLIC_LINE_LIFF_ID!
 
@@ -51,8 +54,7 @@ export const LiffProvider = ({ children }: Props) => {
     try {
       if (process.env.NODE_ENV === 'development') {
         liff.use(new LiffMockPlugin())
-        // @ts-ignore
-        await liff.init({ liffId, mock: true })
+        await liff.init({ liffId, mock: true } as LiffInitConfig)
         liff.login()
       } else {
         await liff.init({ liffId })
