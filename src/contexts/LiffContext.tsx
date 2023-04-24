@@ -2,7 +2,6 @@
 
 import { Profile } from '@liff/get-profile'
 import { Config as LiffConfig } from '@liff/types'
-import { liff } from '@line/liff'
 import { LiffMockPlugin, LiffMockConfig } from '@line/liff-mock'
 import Script from 'next/script'
 import { createContext, useState } from 'react'
@@ -40,9 +39,9 @@ export const LiffProvider = ({ children }: Props) => {
   }
 
   const lineLogin = async (): Promise<void> => {
-    const accessToken = liff.getAccessToken()!
-
-    setProfile(await liff.getProfile())
+    const accessToken = liff.getAccessToken()
+    const _profile = await liff.getProfile()
+    setProfile(_profile)
   }
 
   const liffInit = async () => {
