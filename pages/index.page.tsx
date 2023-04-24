@@ -14,7 +14,7 @@ const TopPage: NextPage = () => {
     if (isLogIn) {
       router.push(routes.top)
     }
-  }, [])
+  }, [isLogIn, router])
 
   return (
     <>
