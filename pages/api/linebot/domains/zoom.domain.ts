@@ -27,7 +27,7 @@ type CreateMeeting = {
   encrypted_password: string
 }
 
-const createMeeting = async (props: CreateMeetingProps): Promise<CreateMeeting> => {
+export const createZoomMeeting = async (props: CreateMeetingProps): Promise<CreateMeeting> => {
   const { topic } = props
 
   const token = jwt.sign(
