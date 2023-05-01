@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { Client } from '@line/bot-sdk'
 
 // LINE Messaging APIの設定
