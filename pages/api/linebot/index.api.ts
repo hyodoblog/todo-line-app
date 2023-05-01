@@ -10,12 +10,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return
   }
 
-  // LINEの署名検証
-  middleware(lineConfig)
+  try {
+    // LINEの署名検証
+    middleware(lineConfig)
 
-  const events = req.body.events as WebhookEvent[]
+    const events = req.body.events as WebhookEvent[]
 
-  await Promise.all(events.map(usecases))
+    await Promise.all(events.map(usecases))
 
-  res.status(200).end()
+    res.status(200).end()
+  } catch (err) {
+    console.error(err)
+    res.status(500).end('Internal Server Error')
+  }
 }
