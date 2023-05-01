@@ -4,13 +4,12 @@ import { lineConfig } from './client'
 import { usecases } from './usecase'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // if (req.method !== 'POST') {
-  //   res.setHeader('Allow', ['POST'])
-  //   res.status(405).end(`Method ${req.method} Not Allowed`)
-  //   return
-  // }
-
   console.info(req.method)
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+    return
+  }
 
   try {
     // LINEの署名検証
