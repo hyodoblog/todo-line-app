@@ -6,6 +6,10 @@ const ZOOM_API_SECRET = String(process.env.ZOOM_API_SECRET)
 
 type CreateMeetingProps = {
   topic: string
+  waitting_room: boolean
+  allow_multiple_devices: boolean
+  participant_video: boolean
+  screen_sharing: boolean
 }
 
 type CreateMeeting = {
@@ -27,7 +31,7 @@ type CreateMeeting = {
 }
 
 export const createZoomMeeting = async (props: CreateMeetingProps): Promise<CreateMeeting> => {
-  const { topic } = props
+  const { topic, waitting_room, allow_multiple_devices, participant_video, screen_sharing } = props
 
   const token = jwt.sign(
     {
@@ -39,7 +43,13 @@ export const createZoomMeeting = async (props: CreateMeetingProps): Promise<Crea
 
   const meetingConfig = {
     topic,
-    type: 1
+    type: 1,
+    settings: {
+      waitting_room,
+      allow_multiple_devices,
+      participant_video,
+      screen_sharing
+    }
   }
 
   try {
