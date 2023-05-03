@@ -5,7 +5,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const { title, description } = JSON.parse(request.body)
 
   try {
-    const data = await prisma.post.create({
+    const data = await prisma.todo.create({
       select: {
         id: true,
         title: true,

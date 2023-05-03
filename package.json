@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && npx prisma format",
+    "generate:prisma": "npx prisma generate"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.5.2",
