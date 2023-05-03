@@ -27,7 +27,7 @@ const getMessages = (tasks: Task[]): FlexMessage => {
           action: {
             type: 'postback',
             label: '削除',
-            displayText: '削除',
+            displayText: `「${task.title}」を削除`,
             data: `delete_task_${task.id}`
           }
         }
