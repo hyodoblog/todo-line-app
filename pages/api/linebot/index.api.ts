@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { WebhookEvent, middleware } from '@line/bot-sdk'
 import { lineConfig } from './client'
-import { usecases } from './usecase'
+import { usecases } from './usecases'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

@@ -6,7 +6,7 @@ import { useContext, useEffect } from 'react'
 import { LiffContext } from '~/contexts/LiffContext'
 import { routes } from '~/constants/routes'
 
-const TodoPage: NextPage = () => {
+const TasksPage: NextPage = () => {
   const { isLogIn } = useContext(LiffContext)
   const router = useRouter()
 
@@ -25,4 +25,4 @@ const TodoPage: NextPage = () => {
   )
 }
 
-export default TodoPage
+export default TasksPage
