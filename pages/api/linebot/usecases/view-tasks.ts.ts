@@ -53,5 +53,13 @@ const getMessages = (tasks: Task[]): FlexMessage => {
 export const viewTasksUsecase = async (event: MessageEvent) => {
   const tasks = await prisma.task.findMany()
 
+  if (tasks.length === 0) {
+    await lineClient.replyMessage(event.replyToken, {
+      type: 'text',
+      text: '登録しているタスクはありません。'
+    })
+    return
+  }
+
   await lineClient.replyMessage(event.replyToken, getMessages(tasks))
 }
