@@ -44,7 +44,15 @@ const getMessages = (tasks: Task[]): FlexMessage => {
         type: 'box',
         layout: 'vertical',
         spacing: 'md',
-        contents: taskFlexComponent
+        contents: [
+          {
+            type: 'text',
+            text: 'タスク一覧',
+            weight: 'bold',
+            size: 'xl'
+          },
+          ...taskFlexComponent
+        ]
       }
     }
   }
