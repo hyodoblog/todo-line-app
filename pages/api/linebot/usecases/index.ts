@@ -17,7 +17,12 @@ export const usecases = async (event: WebhookEvent) => {
   }
 
   // view todo list.
-  if (event.type === 'message' && event.message.type === 'text' && event.source.type === 'user') {
+  if (
+    event.type === 'message' &&
+    event.message.type === 'text' &&
+    event.source.type === 'user' &&
+    event.message.text === 'タスク一覧'
+  ) {
     return await viewTasksUsecase(event)
   }
 
