@@ -10,8 +10,9 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-model Todo {
+model Task {
   id          Int      @id @default(autoincrement())
+  userId      String
   title       String
   description String
   createdAt   DateTime @default(now()) @map(name: "created_at")

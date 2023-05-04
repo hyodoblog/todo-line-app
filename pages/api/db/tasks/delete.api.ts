@@ -5,7 +5,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
   const { id } = JSON.parse(request.body)
 
   try {
-    const data = await prisma.todo.delete({
+    const data = await prisma.task.delete({
       where: {
         id: parseInt(id, 10)
       }
