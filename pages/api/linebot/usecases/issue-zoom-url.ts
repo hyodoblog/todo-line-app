@@ -5,10 +5,7 @@ import { lineClient } from '../client'
 export const issueZoomURLUsecase = async (event: MessageEvent) => {
   const zoomMeeting = await createZoomMeeting({
     topic: String(event.timestamp),
-    waiting_room: false,
-    allow_multiple_devices: true,
-    participant_video: true,
-    screen_sharing: true
+    waiting_room: false
   })
 
   await lineClient.replyMessage(event.replyToken, {
