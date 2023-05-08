@@ -1,9 +1,4 @@
 {
   "redirects": [],
-  "crons": [
-    {
-      "path": "/api/cron/task-notice",
-      "schedule": "0 6 * * *"
-    }
-  ]
+  "crons": []
 }
