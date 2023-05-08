@@ -1,15 +1,5 @@
-// /next.config.js
-
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
-
-/** @type {import('next/dist/server/config-shared').NextConfig} */
-const config = {
-  pwa: {
-    dest: 'public',
-    runtimeCaching
-  },
-
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: false,
 
   pageExtensions: ['page.tsx', 'api.ts'],
@@ -17,4 +7,4 @@ const config = {
   trailingSlash: true
 }
 
-module.exports = withPWA(config)
+module.exports = nextConfig
