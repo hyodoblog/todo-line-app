@@ -4,12 +4,6 @@ import { lineClient } from '~/clients/line.client'
 import { getTaskListMsg } from '~/noticeMessages/task-list'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', ['GET'])
-    res.status(405).end(`Method ${req.method} Not Allowed`)
-    return
-  }
-
   try {
     console.info('cron start.')
 
