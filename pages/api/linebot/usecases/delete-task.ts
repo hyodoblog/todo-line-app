@@ -14,7 +14,7 @@ export const deleteTaskUsecase = async (event: PostbackEvent) => {
     return
   }
 
-  await prisma.task.delete({
+  await prismaClient.task.delete({
     where: {
       id: parseInt(taskId, 10)
     }
