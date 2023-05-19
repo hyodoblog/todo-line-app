@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '~/libs/prisma'
+import { prismaClient } from '~/clients/prisma.client'
 
 export default async function handler(_request: NextApiRequest, response: NextApiResponse) {
   try {
-    const data = await prisma.task.findMany()
+    const data = await prismaClient.task.findMany()
 
     return response.status(200).json({ data })
   } catch (error) {

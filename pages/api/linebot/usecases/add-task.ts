@@ -1,13 +1,13 @@
 import { MessageEvent, TextEventMessage, User as SourceUser } from '@line/bot-sdk'
-import { lineClient } from '../client'
-import { prisma } from '~/libs/prisma'
+import { lineClient } from '~/clients/line.client'
+import { prismaClient } from '~/clients/prisma.client'
 
 export const addTaskUsecase = async (
   event: MessageEvent,
   message: TextEventMessage,
   source: SourceUser
 ) => {
-  await prisma.task.create({
+  await prismaClient.task.create({
     select: {
       id: true,
       title: true,

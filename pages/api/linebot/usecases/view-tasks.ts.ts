@@ -1,10 +1,10 @@
 import { MessageEvent } from '@line/bot-sdk'
-import { lineClient } from '../client'
-import { prisma } from '~/libs/prisma'
+import { lineClient } from '~/clients/line.client'
+import { prismaClient } from '~/clients/prisma.client'
 import { getTaskListMsg } from '~/noticeMessages/task-list'
 
 export const viewTasksUsecase = async (event: MessageEvent) => {
-  const tasks = await prisma.task.findMany()
+  const tasks = await prismaClient.task.findMany()
 
   if (tasks.length === 0) {
     await lineClient.replyMessage(event.replyToken, {

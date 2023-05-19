@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '~/libs/prisma'
+import { prismaClient } from '~/clients/prisma.client'
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const { id } = JSON.parse(request.body)
 
   try {
-    const data = await prisma.task.delete({
+    const data = await prismaClient.task.delete({
       where: {
         id: parseInt(id, 10)
       }

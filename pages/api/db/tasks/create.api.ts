@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '~/libs/prisma'
+import { prismaClient } from '~/clients/prisma.client'
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   const { userId, title, description } = JSON.parse(request.body)
 
   try {
-    const data = await prisma.task.create({
+    const data = await prismaClient.task.create({
       select: {
         id: true,
         title: true,
