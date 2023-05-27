@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 export const TopContent: React.FC = () => {
