@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 export const TopContent: React.FC = () => {
-  const [isSupport, setIsSupport] = useState<boolean>(false)
-
-  useEffect(() => {
-    if ('SpeechRecognition' in window) {
-      // ユーザのブラウザは音声合成に対応しています。
-      setIsSupport(true)
-    } else {
-      // ユーザのブラウザは音声合成に対応していません。
-      setIsSupport(false)
-    }
-  }, [])
+  const {
+    browserSupportsSpeechRecognition: isSupport,
+    listening: isListening,
+    resetTranscript,
+    transcript
+  } = useSpeechRecognition()
 
   return (
     <>
@@ -19,6 +15,10 @@ export const TopContent: React.FC = () => {
       {/*  */}
       {/*  */}
       {isSupport ? <div>サポート中</div> : <div>サポートしていません</div>}
+
+      {isListening ? <div>Listening...</div> : <div>Not listening</div>}
+
+      {transcript}
     </>
   )
 }
