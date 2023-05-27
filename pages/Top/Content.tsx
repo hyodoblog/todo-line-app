@@ -8,6 +8,15 @@ export const TopContent: React.FC = () => {
     transcript
   } = useSpeechRecognition()
 
+  const handleStartListening = () => {
+    resetTranscript()
+    SpeechRecognition.startListening({ continuous: true })
+  }
+
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening()
+  }
+
   return (
     <>
       {/*  */}
@@ -18,6 +27,9 @@ export const TopContent: React.FC = () => {
       {isListening ? <div>Listening...</div> : <div>Not listening</div>}
 
       {transcript}
+
+      <button onClick={handleStartListening}>開始</button>
+      <button onClick={handleStopListening}>停止</button>
     </>
   )
 }
