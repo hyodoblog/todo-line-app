@@ -1,26 +1,20 @@
 import { useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill'
-
-const appId = process.env.NEXT_PUBLIC_SPEECHLY_APP_ID!
-const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId)
-SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition)
 
 export const TopContent: React.FC = () => {
   const {
     browserSupportsSpeechRecognition: isSupport,
     listening: isListening,
+    transcript,
     resetTranscript
   } = useSpeechRecognition()
-  const speechRecognition = new SpeechlySpeechRecognition()
 
   const [error, setError] = useState<string | null>(null)
-  const [transcript, setTranscript] = useState<string | null>(null)
 
   const handleStartListening = () => {
     try {
       resetTranscript()
-      SpeechRecognition.startListening({ continuous: true })
+      SpeechRecognition.startListening({ language: 'ja', continuous: true })
     } catch (err) {
       setError(JSON.stringify(err))
     }
@@ -32,11 +26,6 @@ export const TopContent: React.FC = () => {
     } catch (err) {
       setError(JSON.stringify(err))
     }
-  }
-
-  speechRecognition.onresult = ({ results }) => {
-    const transcript = results[0][0].transcript
-    setTranscript(transcript)
   }
 
   return (
