@@ -6,6 +6,7 @@ export const TopContent: React.FC = () => {
     browserSupportsSpeechRecognition: isSupport,
     listening: isListening,
     isMicrophoneAvailable,
+
     transcript,
     resetTranscript
   } = useSpeechRecognition()
@@ -32,6 +33,12 @@ export const TopContent: React.FC = () => {
   return (
     <>
       {isSupport ? <div>サポート中</div> : <div>サポートしていません</div>}
+      {SpeechRecognition.browserSupportsSpeechRecognition() ? (
+        <div>サポート中</div>
+      ) : (
+        <div>サポートしていません</div>
+      )}
+
       {isMicrophoneAvailable ? <div>マイクサポート中</div> : <div>マイクサポートしてません</div>}
 
       {isListening ? <div>Listening...</div> : <div>Not listening</div>}
