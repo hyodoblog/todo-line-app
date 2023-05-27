@@ -19,9 +19,6 @@ export const TopContent: React.FC = () => {
 
   return (
     <>
-      {/*  */}
-      {/*  */}
-      {/*  */}
       {isSupport ? <div>サポート中</div> : <div>サポートしていません</div>}
 
       {isListening ? <div>Listening...</div> : <div>Not listening</div>}
