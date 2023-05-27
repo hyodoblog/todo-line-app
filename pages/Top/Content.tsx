@@ -5,16 +5,17 @@ import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-po
 const appId = process.env.NEXT_PUBLIC_SPEECHLY_APP_ID!
 const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId)
 SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition)
-const speechRecognition = new SpeechlySpeechRecognition()
 
 export const TopContent: React.FC = () => {
-  const [error, setError] = useState<string | null>(null)
-  const [transcript, setTranscript] = useState<string | null>(null)
   const {
     browserSupportsSpeechRecognition: isSupport,
     listening: isListening,
     resetTranscript
   } = useSpeechRecognition()
+  const speechRecognition = new SpeechlySpeechRecognition()
+
+  const [error, setError] = useState<string | null>(null)
+  const [transcript, setTranscript] = useState<string | null>(null)
 
   const handleStartListening = () => {
     try {
