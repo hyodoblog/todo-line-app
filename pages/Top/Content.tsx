@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 export const TopContent: React.FC = () => {
+  const [error, setError] = useState<string | null>(null)
   const {
     browserSupportsSpeechRecognition: isSupport,
     listening: isListening,
@@ -9,12 +11,20 @@ export const TopContent: React.FC = () => {
   } = useSpeechRecognition()
 
   const handleStartListening = () => {
-    resetTranscript()
-    SpeechRecognition.startListening({ continuous: true })
+    try {
+      resetTranscript()
+      SpeechRecognition.startListening({ continuous: true })
+    } catch (err) {
+      setError(JSON.stringify(err))
+    }
   }
 
   const handleStopListening = () => {
-    SpeechRecognition.stopListening()
+    try {
+      SpeechRecognition.stopListening()
+    } catch (err) {
+      setError(JSON.stringify(err))
+    }
   }
 
   return (
@@ -22,6 +32,8 @@ export const TopContent: React.FC = () => {
       {isSupport ? <div>サポート中</div> : <div>サポートしていません</div>}
 
       {isListening ? <div>Listening...</div> : <div>Not listening</div>}
+
+      {error && <div>{error}</div>}
 
       {transcript}
 
