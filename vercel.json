@@ -2,7 +2,7 @@
   "redirects": [],
   "crons": [
     {
-      "path": "/api/cron/task-notice",
+      "path": "/api/cron/task-notice/",
       "schedule": "* 7,18,22 * * *"
     }
   ]
