@@ -13,9 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await lineClient.pushMessage(tasks[0].userId, getTaskListMsg(tasks))
     }
 
-    res.status(200).end()
+    res.status(200).send({ message: 'success' })
   } catch (err) {
     console.error(err)
-    res.status(405).end('Internal Server Error')
+    res.status(405).send({ message: 'Internal Server Error' })
   }
 }
