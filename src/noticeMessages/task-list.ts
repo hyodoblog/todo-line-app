@@ -11,7 +11,7 @@ export const getTaskListMsg = (tasks: Task[]): FlexMessage => {
           type: 'text',
           text: task.title,
           weight: 'regular',
-          flex: 7,
+          flex: 8,
           margin: 'sm',
           wrap: true
         },
@@ -20,7 +20,7 @@ export const getTaskListMsg = (tasks: Task[]): FlexMessage => {
           text: 'クローズ',
           size: 'md',
           color: '#FF2E2EFF',
-          flex: 2,
+          flex: 4,
           align: 'end',
           action: {
             type: 'postback',
