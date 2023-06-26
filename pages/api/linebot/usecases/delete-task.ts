@@ -8,10 +8,14 @@ export const deleteTaskUsecase = async (event: PostbackEvent) => {
 
   const task = await prismaClient.task.findUnique({ where: { id: parseInt(taskId, 10) } })
   if (task === null) {
-    await lineClient.replyMessage(event.replyToken, {
-      type: 'text',
-      text: `すでにクローズされています`
-    })
+    const tasks = await prismaClient.task.findMany()
+    await lineClient.replyMessage(event.replyToken, [
+      {
+        type: 'text',
+        text: `すでにクローズされています`
+      },
+      getTaskListMsg(tasks)
+    ])
     return
   }
 

@@ -1,6 +1,7 @@
 import { MessageEvent, TextEventMessage, User as SourceUser } from '@line/bot-sdk'
 import { lineClient } from '~/clients/line.client'
 import { prismaClient } from '~/clients/prisma.client'
+import { getTaskListMsg } from '~/noticeMessages/task-list'
 
 export const addTaskUsecase = async (
   event: MessageEvent,
@@ -20,8 +21,13 @@ export const addTaskUsecase = async (
     }
   })
 
-  await lineClient.replyMessage(event.replyToken, {
-    type: 'text',
-    text: 'タスクを保存しました'
-  })
+  const tasks = await prismaClient.task.findMany()
+
+  await lineClient.replyMessage(event.replyToken, [
+    {
+      type: 'text',
+      text: 'タスクを保存しました'
+    },
+    getTaskListMsg(tasks)
+  ])
 }
