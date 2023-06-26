@@ -38,6 +38,7 @@ export const getTaskListMsg = (tasks: Task[]): FlexMessage => {
     altText: 'タスク一覧',
     contents: {
       type: 'bubble',
+      size: 'giga',
       body: {
         type: 'box',
         layout: 'vertical',
