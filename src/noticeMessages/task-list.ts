@@ -17,15 +17,15 @@ export const getTaskListMsg = (tasks: Task[]): FlexMessage => {
         },
         {
           type: 'text',
-          text: '削除',
+          text: 'クローズ',
           size: 'md',
           color: '#FF2E2EFF',
           flex: 2,
           align: 'end',
           action: {
             type: 'postback',
-            label: '削除',
-            displayText: `「${task.title}」を削除`,
+            label: 'クローズ',
+            displayText: `「${task.title}」をクローズ`,
             data: `delete_task_${task.id}`
           }
         }
