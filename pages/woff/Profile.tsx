@@ -8,7 +8,6 @@ export const WoffProfile = () => {
     <div>
       <div>ddd</div>
       <div>{profile?.userId}</div>
-      <div>{profile?.domain}</div>
       <div>{profile?.displayName}</div>
     </div>
   )
