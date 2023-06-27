@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/cron/task-notice/",
-      "schedule": "0 7,18,22 * * *"
+      "schedule": "0 9,13,22 * * *"
     }
   ]
 }
