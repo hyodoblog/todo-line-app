@@ -1,10 +1,10 @@
 import { WoffProvider } from '~/contexts/WoffContext'
-import { WoffProfile } from './Profile'
+import { WoffTasks } from './Tasks'
 
 export default function WoffTopPage() {
   return (
     <WoffProvider>
-      <WoffProfile />
+      <WoffTasks />
     </WoffProvider>
   )
 }

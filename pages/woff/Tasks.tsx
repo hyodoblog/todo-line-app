@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { MiniLoader } from '~/components/Loader/Mini'
 import { TasksTable } from '~/components/Tasks/Table'
 
-export const WoffProfile = () => {
+export const WoffTasks = () => {
   const [tasks, setTasks] = useState<Task[] | null>(null)
 
   const init = async () => {
