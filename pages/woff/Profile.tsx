@@ -1,37 +1,20 @@
 import { Task } from '@prisma/client'
-import { useContext, useEffect, useState } from 'react'
-import { prismaClient } from '~/clients/prisma.client'
+import { useEffect, useState } from 'react'
 import { MiniLoader } from '~/components/Loader/Mini'
-import { WoffContext } from '~/contexts/WoffContext'
+import { TasksTable } from '~/components/Tasks/Table'
 
 export const WoffProfile = () => {
-  const { profile } = useContext(WoffContext)
   const [tasks, setTasks] = useState<Task[] | null>(null)
 
-  useEffect(() => {
-    ;(async () => {
-      if (profile) {
-        const res = await fetch('api/db/tasks/get')
-        const data = await res.json()
-        setTasks(data as Task[])
-      }
-    })()
-  }, [profile])
+  const init = async () => {
+    const res = await fetch('/api/db/tasks/get')
+    const { data } = await res.json()
+    setTasks(data as Task[])
+  }
 
-  return (
-    <div>
-      {tasks === null ? (
-        <MiniLoader />
-      ) : (
-        <div>
-          {tasks.map((task) => (
-            <div key={task.id}>
-              <div>{task.title}</div>
-              <div>{task.description}</div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
+  useEffect(() => {
+    init()
+  }, [])
+
+  return <div>{tasks === null ? <MiniLoader /> : <TasksTable tasks={tasks} refetch={init} />}</div>
 }
