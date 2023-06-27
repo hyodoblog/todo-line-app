@@ -39,7 +39,6 @@ export const LiffProvider = ({ children }: Props) => {
   }
 
   const lineLogin = async (): Promise<void> => {
-    const accessToken = liff.getAccessToken()
     const _profile = await liff.getProfile()
     setProfile(_profile)
   }
