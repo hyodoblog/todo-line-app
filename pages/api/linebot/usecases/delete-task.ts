@@ -1,4 +1,4 @@
-import { PostbackEvent } from '@line/bot-sdk'
+import { Message, PostbackEvent } from '@line/bot-sdk'
 import { lineClient } from '~/clients/line.client'
 import { prismaClient } from '~/clients/prisma.client'
 import { getTaskListMsg } from '~/noticeMessages/task-list'
@@ -27,11 +27,16 @@ export const deleteTaskUsecase = async (event: PostbackEvent) => {
 
   const tasks = await prismaClient.task.findMany()
 
-  await lineClient.replyMessage(event.replyToken, [
+  const messages: Message[] = [
     {
       type: 'text',
       text: `「${task.title}」をクローズしました`
-    },
-    getTaskListMsg(tasks)
-  ])
+    }
+  ]
+
+  if (tasks.length > 0) {
+    messages.push(getTaskListMsg(tasks))
+  }
+
+  await lineClient.replyMessage(event.replyToken, messages)
 }
